@@ -42782,7 +42782,7 @@
 	  });
 	  renderer.setSize(width, height);
 	  renderer.setPixelRatio(window.devicePixelRatio);
-	  renderer.setClearColor(new Color('hsl(0, 0%, 10%)'));
+	  renderer.setClearColor(new Color('0, 0%, 10%, false'));
 	  return renderer;
 	};
 

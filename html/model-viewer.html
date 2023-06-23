@@ -51,17 +51,26 @@
 				interaction-prompt-style="basic"
 				camera-orbit="0deg 80deg 3.5m"
 				field-of-view="auto"
+				shadow-intensity="1" 
 				skybox-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr"> 
 			</model-viewer> 
 			-->
-
-			<model-viewer src="../img/sample/duck.glb"
+			<!-- ../img/sample/duck.glb -->
+			<model-viewer 
+				ar 
+				camera-controls touch-action="pan-y" 
+				src="../img/sample/duck.glb"
+				
+				ar-placement="wall"
 				alt="iPhone 14"
-				touch-action="pan-y"
-				camera-controls
 				disable-zoom
 				disable-tap		
+				ar-scale="fixed"
+				ar-modes
 				> 
+				<button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; ">
+					👋 Activate AR
+				</button>
 
 				<div class="options-area">
 					<div class="options-item">
@@ -73,8 +82,8 @@
 				
 			</model-viewer>
 		
-		<script src="../js/jquery-ui.min.js"></script>
 		<script src="../js/jquery.min.js"></script>
+		<script src="../js/jquery-ui.min.js"></script>
 		<!-- 3D 렌더 js ↓ -->
 		<script type="module" src="../js//model-viewer.min.js"></script>
 				
@@ -89,6 +98,7 @@
 				items.forEach((element) => {element.classList.remove("selected");});
 				element.classList.add("selected");
 			};
+			
 		
 			document.querySelector(".options-area").addEventListener('beforexrselect', (ev) => {
 				// Keep slider interactions from affecting the XR scene.
