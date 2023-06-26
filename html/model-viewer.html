@@ -3,8 +3,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>test model-viewer</title>
+		<title>test <model-viewer> </title>
 		<style>
+			body{
+				touch-action: none; 
+				overflow: hidden;
+			}
 			model-viewer {
 				display: block;
 				width: 100%;
@@ -36,62 +40,36 @@
 	</head>
 	<body>
 		<div class="3D-model-viewer-wrap">
-			
 			<!-- 3D 렌더 영역 -->
-			<!-- Use it like any other HTML element -->
-			<!-- 샘플 소스 
-			<model-viewer src="../img/sample/duck.glb"
-				alt="A 3D model of a damaged helmet"
-				loading="eager"
-				auto-rotate
-				camera-controls
-				disable-zoom
-				auto-rotate-delay="1000"
-				rotation-per-second="-100%"
-				interaction-prompt-style="basic"
-				camera-orbit="0deg 80deg 3.5m"
-				field-of-view="auto"
-				shadow-intensity="1" 
-				skybox-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr"> 
-			</model-viewer> 
-			-->
-			<!-- ../img/sample/duck.glb -->
 			<model-viewer 
-				ar 
-				camera-controls touch-action="pan-y" 
-				src="../img/sample/duck.glb"
-				
-				ar-placement="wall"
-				alt="iPhone 14"
-				disable-zoom
-				disable-tap		
-				ar-scale="fixed"
-				ar-modes
-				> 
-				<button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; ">
-					👋 Activate AR
-				</button>
-
+				src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" 
+				camera-controls
+				touch-action="pan-y" 
+				ar-placement="wall"  
+				alt="iPhone 14" 
+				disable-zoom 
+				disable-tap	
+			> 
 				<div class="options-area">
 					<div class="options-item">
-						<button class="item-color selected" onclick="switchSrc(this, 'duck')" style="background-color: rgb(249, 228, 121);"></button>
-						<button class="item-color" onclick="switchSrc(this, 'avocado')" style="background-color: rgb(184, 235, 127);"></button>
-						<button class="item-color" onclick="switchSrc(this, 'helmet')" style="background-color: rgb(160, 180, 199);"></button>
+						<button class="item-color selected" onclick="switchSrc(this, 'Astronaut')" style="background-color: #8c9495;"></button>
+						<button class="item-color" onclick="switchSrc(this, 'RobotExpressive')" style="background-color: #d9b25a;"></button>
+						<button class="item-color" onclick="switchSrc(this, 'RocketShip')" style="background-color: #c71b19;"></button>
 					</div>
 				</div>
-				
 			</model-viewer>
-		
+
 		<script src="../js/jquery.min.js"></script>
 		<script src="../js/jquery-ui.min.js"></script>
 		<!-- 3D 렌더 js ↓ -->
-		<script type="module" src="../js//model-viewer.min.js"></script>
+		<!-- <script type="module" src="../js/model-viewer.min.js"></script> -->
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 				
 		<script type="module">
 			const modelViewer = document.querySelector("model-viewer");
 		
 			window.switchSrc = (element, name) => {
-				const base = "../img/sample/" + name;
+				const base = "https://modelviewer.dev/shared-assets/models/" + name;
 				modelViewer.src = base + '.glb';
 				// modelViewer.poster = base + '.webp';
 				const items = document.querySelectorAll(".item-color");
@@ -99,7 +77,7 @@
 				element.classList.add("selected");
 			};
 			
-		
+			
 			document.querySelector(".options-area").addEventListener('beforexrselect', (ev) => {
 				// Keep slider interactions from affecting the XR scene.
 				ev.preventDefault();
